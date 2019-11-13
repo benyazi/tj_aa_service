@@ -1,0 +1,54 @@
+<html lang="ru">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        .b_q_item {
+            position: relative;
+            padding: 10px;
+            background-color: #eee;
+            margin-top: 10px;
+        }
+        .b_q_item__answer {
+            margin-top: 5px;
+        }
+        .b_q_card {
+            margin-bottom: 15px;
+        }
+        .b_q_card__media {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div>
+        <h1>{{ contentTitle }}</h1>
+        <div>
+            {% for q in questions %}
+                {% if q['answer'] %}
+                <div class="card b_q_card">
+                    <div class="card-body">
+                        <div class="media b_q_card__media">
+                            <img width="60px" src="{{ q['avatar'] }}" class="mr-3 rounded-circle" alt="...">
+                            <div class="media-body">
+                                <h5 class="mt-0">{{ q['name'] }}</h5>
+                                <p class="card-text">{{ q['question']|nl2br }}</p>
+                            </div>
+                        </div>
+                        <div class="media b_q_card__media">
+                            <img width="60px" src="{{ q['answer']['avatar'] }}" class="mr-3 rounded-circle" alt="...">
+                            <div class="media-body">
+                                <h5 class="mt-0">{{ q['answer']['name'] }}</h5>
+                                <p class="card-text">{{ q['answer']['text']|nl2br }}</p>
+                            </div>
+                        </div>
+                        <a href="{{ q['url'] }}" target="_blank" class="card-link">Посмотреть ответ на сайте</a>
+                    </div>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+</body>
+</html>
