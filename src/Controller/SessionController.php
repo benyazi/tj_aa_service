@@ -1,6 +1,7 @@
 <?php
 namespace App\Controller;
 
+use Benyazi\CmttPhp\Api;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -16,6 +17,28 @@ class SessionController extends AbstractController
     public function __construct(EntityManager $em)
     {
         $this->em = $em;
+    }
+
+    /**
+     * @Route("/")
+     */
+    public function listAction(Request $request)
+    {
+        $list = [];
+        $client = new \Benyazi\CmttPhp\Api(\Benyazi\CmttPhp\Api::TJOURNAL);
+        $contents = $client->getTimeline('guest', Api::SORTING_RECENT);
+//        var_dump($contents);die;
+        foreach ($contents as $content) {
+            if($content['id'] < 123565) {
+                continue;
+            }
+            if(mb_strpos($content['title'],'Гость TJ') === 0) {
+                $list[] = $content;
+            }
+        }
+        return $this->render('list.html.twig', [
+            'contents' => $list,
+        ]);
     }
 
     /**

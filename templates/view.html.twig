@@ -17,12 +17,23 @@
         .b_q_card__media {
             margin-bottom: 15px;
         }
+        h1 {
+
+        }
     </style>
 </head>
 <body>
 <div class="container">
     <div>
-        <h1>{{ contentTitle }}</h1>
+        <div class="mb-1">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Список Гостей</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ contentTitle }}</li>
+                </ol>
+            </nav>
+        </div>
+        <h1 class="mb-3">{{ contentTitle }}</h1>
         <div>
             {% for q in questions %}
                 {% if q['answer'] %}

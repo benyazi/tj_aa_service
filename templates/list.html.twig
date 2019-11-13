@@ -1,0 +1,32 @@
+<html lang="ru">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+
+        .b_q_card {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div>
+        <div class="mb-1">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item active" aria-current="page">Список Гостей</li>
+                </ol>
+            </nav>
+        </div>
+        <h1 class="mb-3">Список гостей</h1>
+        <div>
+            {% for content in contents %}
+                <div class="card mb-3">
+                    <a href="/view/{{ content['id'] }}" class="card-link">{{ content['title'] }}</a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+</body>
+</html>
